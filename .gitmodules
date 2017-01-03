@@ -1,0 +1,3 @@
+[submodule "plugins/pixiu/commerce"]
+	path = plugins/pixiu/commerce
+	url = https://github.com/pixiucz/commerce-plugin.git
