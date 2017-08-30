@@ -1,34 +1,23 @@
-var gulp = require('gulp');
-var babel = require('gulp-babel');
-var sourcemaps = require('gulp-sourcemaps');
-var less = require('gulp-less');
-var clean = require('gulp-clean');
+var path = require('path');
+var elixir = require('laravel-elixir');
 
-var plugin = 'plugins/pixiu/commerce/';
-var theme = 'themes/pixiu/';
+require('laravel-elixir-vue-2');
 
-gulp.task('css', function() {
-    return gulp.src(theme + 'assets/less/bundle.less')
-        .pipe(sourcemaps.init())
-        .pipe(less())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(theme + 'assets/dist'))
+const ElementUI = 'node_modules/element-ui/lib/theme-default';
+
+const Plugin = 'plugins/pixiu/commerce/';
+const Sources = Plugin + 'components/commerce/assets/';
+
+elixir(function(mix) {
+    console.log('Building...');
+
+    mix.webpack('main.js', Sources + '/dist/js', Sources + '/js');
+    mix.less('custom.css', Sources + '/dist/css', Sources + '/css');
+
+    console.log('Copying...');
+
+    mix.copy(Sources + '/css/reset.css', Sources + '/dist/css/reset.css');
+
+    console.log('Finished.');
 });
 
-gulp.task('js', function() {
-    return gulp.src(plugin + 'assets/js/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(babel({
-        	presets: ['es2015'], 
-        	plugins: ['transform-es2015-modules-amd']
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(plugin + 'assets/dist'))
-});
-
-gulp.task('default', ['css', 'js']);
-
-gulp.task('clean', function() {
-	return gulp.src([theme + 'assets/dist', plugin + 'assets/dist'], {read: false})
-		.pipe(clean());
-});
