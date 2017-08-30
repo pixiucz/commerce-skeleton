@@ -5,10 +5,12 @@
     "dev": "gulp watch"
   },
   "dependencies": {
+    "element-ui": "^1.4.1",
     "lodash": "^4.17.4",
     "vue": "^2.4.0",
+    "vue-i18n": "^7.2.0",
     "vue-resource": "^1.2.1",
-    "element-ui": "^1.4.1"
+    "vuex": "^2.4.0"
   },
   "devDependencies": {
     "babel-preset-stage-2": "^6.22.0",

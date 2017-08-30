@@ -6,7 +6,7 @@ require('laravel-elixir-vue-2');
 const ElementUI = 'node_modules/element-ui/lib/theme-default';
 
 const Plugin = 'plugins/pixiu/commerce/';
-const Sources = Plugin + 'components/commerce/assets/';
+const Sources = Plugin + 'assets/';
 
 elixir(function(mix) {
     console.log('Building...');
